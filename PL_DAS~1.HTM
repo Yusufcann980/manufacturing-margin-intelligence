@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Company P&L 2025 — Dummy Data</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f6fa;color:#1a1a2e;padding:1.5rem 2rem}
+.hdr{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #0F6E56}
+.hdr-title{font-size:20px;font-weight:700;color:#0F6E56}
+.hdr-badge{font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;background:#ecfdf5;color:#065f46;margin-top:4px;display:inline-block}
+.hdr-sub{font-size:12px;color:#6b7280;text-align:right}
+.kpi-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:1.25rem}
+.kpi{background:#fff;border-radius:10px;padding:.85rem 1rem;border:1px solid #e5e7eb;border-top:3px solid #0F6E56}
+.kpi-label{font-size:10px;color:#6b7280;margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.kpi-val{font-size:20px;font-weight:700;line-height:1.1}
+.kpi-sub{font-size:10px;color:#9ca3af;margin-top:3px}
+.pos{color:#0F6E56} .neg{color:#A32D2D} .warn{color:#BA7517} .neu{color:#1a1a2e}
+.row2{display:grid;grid-template-columns:3fr 2fr;gap:12px;margin-bottom:12px}
+.row3{display:grid;grid-template-columns:3fr 2fr;gap:12px;margin-bottom:12px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.25rem}
+.card-title{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:2px}
+.card-sub{font-size:10px;color:#9ca3af;margin-bottom:.75rem}
+.leg{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:8px;font-size:10px;color:#6b7280}
+.ld{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:middle}
+.qg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.qc{background:#f9fafb;border-radius:8px;padding:.6rem .75rem;border:1px solid #e5e7eb}
+.ql{font-size:10px;color:#9ca3af;margin-bottom:2px;font-weight:500}
+.qv{font-size:14px;font-weight:700;color:#1a1a2e}
+.qn{font-size:10px;margin-top:2px}
+.alert-bar{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:.6rem 1rem;margin-bottom:1.25rem;font-size:12px;color:#064e3b;font-weight:500}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <div class="hdr-title">Company P&L 2025 — Dummy Data</div>
+    <div class="hdr-badge">✓ PROFITABLE YEAR</div>
+  </div>
+  <div class="hdr-sub">FY 2025 &nbsp;·&nbsp; Jan – Dec &nbsp;·&nbsp; All amounts in TRY</div>
+</div>
+
+<div class="alert-bar" style="background:#ecfdf5;border-color:#6ee7b7;color:#064e3b;">✓ Company profitable on 10 of 12 months. Revenue (₺134.1M) comfortably exceeds expenses (₺115.0M). Cost ratio at 85.7% — healthy margin with room for reinvestment.</div>
+
+<div class="kpi-grid">
+  <div class="kpi"><div class="kpi-label">Total revenue</div><div class="kpi-val neu">₺134.1M</div><div class="kpi-sub">Annual gross sales</div></div>
+  <div class="kpi"><div class="kpi-label">Total expenses</div><div class="kpi-val warn">₺115.0M</div><div class="kpi-sub">85.7% of revenue</div></div>
+  <div class="kpi"><div class="kpi-label">Net profit / loss</div><div class="kpi-val pos">₺19.1M</div><div class="kpi-sub">Revenue − expenses</div></div>
+  <div class="kpi"><div class="kpi-label">Net margin</div><div class="kpi-val pos">14.3%</div><div class="kpi-sub">Net / revenue</div></div>
+  <div class="kpi"><div class="kpi-label">Cost ratio</div><div class="kpi-val warn">85.7%</div><div class="kpi-sub">Expenses / revenue</div></div>
+  <div class="kpi"><div class="kpi-label">Loss months</div><div class="kpi-val warn">2 / 12</div><div class="kpi-sub">Jun & Aug minor losses</div></div>
+</div>
+
+<div class="row2">
+  <div class="card">
+    <div class="card-title">Monthly revenue vs expenses</div>
+    <div class="card-sub">Revenue (solid) · Expenses (dashed) — gap reveals profitability pressure</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#0F6E56"></span>Revenue</span>
+      <span><span class="ld" style="background:#993C1D"></span>Expenses</span>
+    </div>
+    <div style="position:relative;width:100%;height:230px"><canvas id="c1"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Cost mix — full year</div>
+    <div class="card-sub">Variable vs fixed expense split</div>
+    <div class="leg">
+      <span><span class="ld" style="background:#BA7517"></span>Variable 59.5%</span>
+      <span><span class="ld" style="background:#534AB7"></span>Fixed 40.5%</span>
+    </div>
+    <div style="position:relative;width:100%;height:175px"><canvas id="c2"></canvas></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+      <div class="qc"><div class="ql">Variable costs</div><div class="qv" style="font-size:13px">₺68.4M</div><div class="qn" style="color:#BA7517">51.0% of revenue</div></div>
+      <div class="qc"><div class="ql">Fixed costs</div><div class="qv" style="font-size:13px">₺46.6M</div><div class="qn" style="color:#534AB7">34.7% of revenue</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="row3">
+  <div class="card">
+    <div class="card-title">Monthly net profit / loss</div>
+    <div class="card-sub">Green = profitable · Red = loss — zero line marks break-even</div>
+    <div style="position:relative;width:100%;height:210px"><canvas id="c3"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Quarterly breakdown</div>
+    <div class="card-sub">Revenue and net by quarter</div>
+    <div class="qg">
+      <div class="qc"><div class="ql">Q1 revenue</div><div class="qv">₺34.2M</div><div class="qn pos">Net ₺4.7M</div></div>
+      <div class="qc"><div class="ql">Q2 revenue</div><div class="qv">₺32.1M</div><div class="qn pos">Net ₺4.3M</div></div>
+      <div class="qc"><div class="ql">Q3 revenue</div><div class="qv">₺32.0M</div><div class="qn pos">Net ₺1.9M</div></div>
+      <div class="qc"><div class="ql">Q4 revenue</div><div class="qv">₺35.8M</div><div class="qn pos">Net ₺8.3M</div></div>
+      <div class="qc"><div class="ql">Best quarter</div><div class="qv">Q4</div><div class="qn pos">Net ₺8.3M</div></div>
+      <div class="qc"><div class="ql">Worst quarter</div><div class="qv">Q3</div><div class="qn neg">Net ₺1.9M</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:1.5rem">
+  <div class="card-title">Cumulative net profit / loss</div>
+  <div class="card-sub">Cumulative profit grows steadily all year, accelerating through Q4 to ₺19.1M</div>
+  <div class="leg"><span><span class="ld" style="background:#1D9E75"></span>Cumulative P&amp;L</span><span><span class="ld" style="background:#d1d5db"></span>Break-even (zero)</span></div>
+  <div style="position:relative;width:100%;height:180px"><canvas id="c4"></canvas></div>
+</div>
+
+<script>
+const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const rev=[12209169, 10378385, 11570377, 11683587, 11707288, 8722953, 12218699, 10208736, 9614539, 10755903, 11177136, 13875532];
+const exp=[9539839, 9951561, 10014032, 8656266, 9877686, 9314234, 10252677, 10373030, 9502600, 8854528, 8684697, 9969183];
+const net=[2669331, 426824, 1556345, 3027321, 1829601, -591281, 1966023, -164294, 111940, 1901375, 2492439, 3906349];
+const cum=[2669331, 3096155, 4652500, 7679821, 9509422, 8918141, 10884164, 10719869, 10831809, 12733184, 15225623, 19131972];
+const fmt=v=>{
+  const sign=v<0?'-':'';
+  const abs=Math.abs(v);
+  if(abs>=1e6) return sign+'₺'+(abs/1e6).toFixed(1)+'M';
+  return sign+'₺'+(abs/1e3).toFixed(0)+'K';
+};
+Chart.defaults.font.family='Arial,sans-serif';
+Chart.defaults.color='#6b7280';
+
+new Chart(document.getElementById('c1'),{type:'line',data:{labels:months,datasets:[
+  {label:'Revenue',data:rev,borderColor:'#0F6E56',backgroundColor:'rgba(0,0,0,0)',borderWidth:2.5,pointRadius:3,pointBackgroundColor:'#0F6E56',tension:.35},
+  {label:'Expenses',data:exp,borderColor:'#993C1D',borderDash:[6,4],borderWidth:2,pointRadius:3,pointBackgroundColor:'#993C1D',backgroundColor:'rgba(153,60,29,0.04)',fill:true,tension:.35}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>fmt(ctx.raw)}}},scales:{x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{autoSkip:false,maxRotation:0,font:{size:10}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>fmt(v),font:{size:10}}}}}}); 
+
+new Chart(document.getElementById('c2'),{type:'doughnut',data:{labels:['Variable','Fixed'],datasets:[{data:[68424078,46566255],backgroundColor:['#BA7517','#534AB7'],borderWidth:0,hoverOffset:6}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ctx.label+': ₺'+(ctx.raw/1e6).toFixed(1)+'M ('+(ctx.raw/t*100).toFixed(1)+'%)'}}}}}}); 
+
+new Chart(document.getElementById('c3'),{type:'bar',data:{labels:months,datasets:[{label:'Net P&L',data:net,backgroundColor:net.map(v=>v>=0?'rgba(15,110,86,.78)':'rgba(163,45,45,.78)'),borderColor:net.map(v=>v>=0?'#0F6E56':'#A32D2D'),borderWidth:1,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>fmt(ctx.raw)}}},scales:{x:{grid:{display:false},ticks:{autoSkip:false,maxRotation:0,font:{size:10}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>fmt(v),font:{size:10}}}}}}); 
+
+new Chart(document.getElementById('c4'),{type:'line',data:{labels:months,datasets:[
+  {label:'Cumulative P&L',data:cum,borderColor:'#1D9E75',backgroundColor:'rgba(29,158,117,0.08)',borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#1D9E75',fill:true,tension:.35},
+  {label:'Zero',data:Array(12).fill(0),borderColor:'rgba(0,0,0,.15)',borderDash:[4,4],borderWidth:1,pointRadius:0,fill:false}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.datasetIndex===0?fmt(ctx.raw):''}}},scales:{x:{grid:{color:'rgba(0,0,0,.04)'},ticks:{autoSkip:false,maxRotation:0,font:{size:10}}},y:{grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>fmt(v),font:{size:10}}}}}}); 
+</script>
+</body>
+</html>
