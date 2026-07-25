@@ -1,0 +1,14 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*~
+.vscode/
+.idea/
+
+# Office temp / lock files
+~$*.xlsx
+~$*.docx
+*.tmp
+
+# Power BI local caches (if you add a .pbix later)
+*.pbix.tmp
